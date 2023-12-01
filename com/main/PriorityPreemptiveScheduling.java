@@ -47,7 +47,7 @@ public class PriorityPreemptiveScheduling {
         displayResults(processes);
     }
 
-    public static void calculateParameters(List < Process > processes) {
+    public static void calculateParameters(List<Process> processes) {
         int currentTime = 0;
         int totalProcesses = processes.size();
         int completedProcesses = 0;
@@ -72,7 +72,7 @@ public class PriorityPreemptiveScheduling {
                 if (selectedProcess.burstTime == 0) {
                     selectedProcess.completionTime = currentTime;
                     selectedProcess.turnaroundTime = selectedProcess.completionTime - selectedProcess.arrivalTime;
-                    selectedProcess.waitingTime = selectedProcess.turnaroundTime - selectedProcess.burstTime;
+                    selectedProcess.waitingTime = selectedProcess.turnaroundTime - selectedProcess.originalBurst;
                     completedProcesses++;
                 } else {
                     selectedProcess.waitingTime += 1; // Add this line to update the waiting time

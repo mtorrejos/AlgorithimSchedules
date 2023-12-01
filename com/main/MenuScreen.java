@@ -30,7 +30,7 @@ public class MenuScreen {
 				break;
 			case 4:
 				System.out.print("Exiting...");
-				break;
+				return;
 			default:
 				System.out.print("Error: Invalid input");
 				break;
