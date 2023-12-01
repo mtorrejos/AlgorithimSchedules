@@ -10,8 +10,9 @@ class Process {
     int completionTime;
     int turnaroundTime;
     int waitingTime;
+    int originalBurst;
 
-    public Process(int pid, int arrivalTime, int burstTime, int priority) {
+    public Process(int pid, int arrivalTime, int burstTime, int priority, int originalBurst) {
         this.pid = pid;
         this.arrivalTime = arrivalTime;
         this.burstTime = burstTime;
@@ -19,6 +20,7 @@ class Process {
         this.completionTime = 0;
         this.turnaroundTime = 0;
         this.waitingTime = 0;
+        this.originalBurst = burstTime;
     }
 }
 
@@ -38,14 +40,14 @@ public class PriorityPreemptiveScheduling {
             System.out.print("Enter Priority: ");
             int priority = scanner.nextInt();
 
-            processes.add(new Process(i + 1, arrivalTime, burstTime, priority));
+            processes.add(new Process(i + 1, arrivalTime, burstTime, priority, burstTime));
         }
 
         calculateParameters(processes);
         displayResults(processes);
     }
 
-    public static void calculateParameters(List<Process> processes) {
+    public static void calculateParameters(List < Process > processes) {
         int currentTime = 0;
         int totalProcesses = processes.size();
         int completedProcesses = 0;
@@ -53,7 +55,6 @@ public class PriorityPreemptiveScheduling {
         while (completedProcesses < totalProcesses) {
             Process selectedProcess = null;
             int highestPriority = Integer.MAX_VALUE;
-
             for (Process process: processes) {
                 if (process.arrivalTime <= currentTime && process.completionTime == 0) {
                     if (process.priority < highestPriority) {
@@ -68,13 +69,13 @@ public class PriorityPreemptiveScheduling {
             } else {
                 currentTime++;
                 selectedProcess.burstTime--;
-
                 if (selectedProcess.burstTime == 0) {
                     selectedProcess.completionTime = currentTime;
                     selectedProcess.turnaroundTime = selectedProcess.completionTime - selectedProcess.arrivalTime;
                     selectedProcess.waitingTime = selectedProcess.turnaroundTime - selectedProcess.burstTime;
-
                     completedProcesses++;
+                } else {
+                    selectedProcess.waitingTime += 1; // Add this line to update the waiting time
                 }
             }
         }
@@ -91,7 +92,7 @@ public class PriorityPreemptiveScheduling {
             totalWaitingTime += process.waitingTime;
 
             System.out.println(process.pid + "\t\t" + process.arrivalTime + "\t\t" +
-                process.burstTime + "\t\t" + process.completionTime + "\t\t" +
+                process.originalBurst + "\t\t" + process.completionTime + "\t\t" +
                 process.turnaroundTime + "\t\t" + process.waitingTime);
         }
 
