@@ -9,7 +9,7 @@ public class SJF {
 
         System.out.println("Enter the number of processes:");
         int n = in.nextInt();
-        ArrayList<Process> processes = new ArrayList<>();
+        ArrayList<SJFProcess> processes = new ArrayList<>();
         int tot = 0;
         float avgwt = 0, avgta = 0;
 
@@ -18,7 +18,7 @@ public class SJF {
             int arrivalTime = in.nextInt();
             System.out.print("Enter process " + (i + 1) + " burst time: ");
             int burstTime = in.nextInt();
-            processes.add(new Process(i + 1, arrivalTime, burstTime));
+            processes.add(new SJFProcess(i + 1, arrivalTime, burstTime));
         }
 
         int currentTime = 0;
@@ -28,10 +28,10 @@ public class SJF {
                 break;
             }
 
-            Process currentProcess = null;
+            SJFProcess currentProcess = null;
             int minBurstTime = Integer.MAX_VALUE;
 
-            for (Process process : processes) { //finds the min burst time repeatedly for non-complete processes
+            for (SJFProcess process : processes) { //finds the min burst time repeatedly for non-complete processes
                 if (!process.completed && process.arrivalTime <= currentTime && process.burstTime < minBurstTime) {
                     minBurstTime = process.burstTime;
                     currentProcess = process;
@@ -51,7 +51,7 @@ public class SJF {
         }
 
         System.out.println("\npID \tArrival \tBurst \tComplete \tTAT \tWaiting");
-        for (Process process : processes) {
+        for (SJFProcess process : processes) {
             avgwt += process.waitingTime;
             avgta += process.turnAroundTime;
             System.out.println(process.processId + "\t" + process.arrivalTime + "\t\t" + process.burstTime + "\t" +
@@ -65,7 +65,7 @@ public class SJF {
     }
 }
 
-class Process {
+class SJFProcess {
 
     int processId;
     int arrivalTime;
@@ -75,7 +75,7 @@ class Process {
     int waitingTime;
     boolean completed;
 
-    public Process(int processId, int arrivalTime, int burstTime) {
+    public SJFProcess(int processId, int arrivalTime, int burstTime) {
         this.processId = processId;
         this.arrivalTime = arrivalTime;
         this.burstTime = burstTime;

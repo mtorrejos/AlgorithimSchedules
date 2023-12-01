@@ -21,6 +21,8 @@ public class MenuScreen {
 				scan.run();
 				break;
 			case 2:
+				PriorityPreemptiveScheduling pps = new PriorityPreemptiveScheduling();
+				pps.run();
 				break;
 			case 3:
 				SJF sjf = new SJF();
