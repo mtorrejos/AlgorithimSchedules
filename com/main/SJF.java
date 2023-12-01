@@ -59,9 +59,7 @@ public class SJF {
         }
 
         System.out.println("\naverage turnaround time is " + (float) (avgta / n));
-        System.out.println("average waiting time is " + (float) (avgwt / n));
-
-        in.close();
+        System.out.println("average waiting time is " + (float) (avgwt / n) + "\n");
     }
 }
 

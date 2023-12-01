@@ -47,38 +47,39 @@ public class SCAN {
 
 
 
-public static void scanDiskScheduling(int[] requests, int headPosition, int trackSize) {
-    Arrays.sort(requests);
-
-    int totalHeadMovements = 0;
-    int currentHeadPosition = headPosition;
-    int tail = trackSize;
-            
-    int headIndex = Arrays.binarySearch(requests, headPosition);
-
-    if (headIndex < 0) {
-        headIndex = -headIndex - 1;
-    }
-    
-    // Move the disk arm towards the end of the disk
-    for (int i = headIndex; i < requests.length; i++) {
-        System.out.println("Servicing Request: " + requests[i]);
-        totalHeadMovements += Math.abs(requests[i] - currentHeadPosition);
-        currentHeadPosition = requests[i];
-    }
-    
-    // Go to the tail
-    System.out.println("Servicing Request: " + tail+"[Tail]");
-    totalHeadMovements += Math.abs(tail - currentHeadPosition);
-    currentHeadPosition = tail;
-            
-    // Move the disk arm towards the beginning of the disk
-    for (int i = headIndex - 1; i >= 0; i--) {
-        System.out.println("Servicing Request: " + requests[i]);
-        totalHeadMovements += Math.abs(requests[i] - currentHeadPosition);
-        currentHeadPosition = requests[i];
-    }
-
-    System.out.println("Total Head Movements: " + totalHeadMovements);
+	public static void scanDiskScheduling(int[] requests, int headPosition, int trackSize) {
+	    Arrays.sort(requests);
+	
+	    int totalHeadMovements = 0;
+	    int currentHeadPosition = headPosition;
+	    int tail = trackSize;
+	            
+	    int headIndex = Arrays.binarySearch(requests, headPosition);
+	
+	    if (headIndex < 0) {
+	        headIndex = -headIndex - 1;
+	    }
+	    
+	    // Move the disk arm towards the end of the disk
+	    for (int i = headIndex; i < requests.length; i++) {
+	        System.out.println("Servicing Request: " + requests[i]);
+	        totalHeadMovements += Math.abs(requests[i] - currentHeadPosition);
+	        currentHeadPosition = requests[i];
+	    }
+	    
+	    // Go to the tail
+	    System.out.println("Servicing Request: " + tail+"[Tail]");
+	    totalHeadMovements += Math.abs(tail - currentHeadPosition);
+	    currentHeadPosition = tail;
+	            
+	    // Move the disk arm towards the beginning of the disk
+	    for (int i = headIndex - 1; i >= 0; i--) {
+	        System.out.println("Servicing Request: " + requests[i]);
+	        totalHeadMovements += Math.abs(requests[i] - currentHeadPosition);
+	        currentHeadPosition = requests[i];
+	    }
+	
+	    System.out.println("Total Head Movements: " + totalHeadMovements + "\n");
+	    
 	}
 }

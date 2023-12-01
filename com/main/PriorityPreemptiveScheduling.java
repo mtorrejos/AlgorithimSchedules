@@ -93,7 +93,7 @@ public class PriorityPreemptiveScheduling {
 
             System.out.println(process.pid + "\t\t" + process.arrivalTime + "\t\t" +
                 process.originalBurst + "\t\t" + process.completionTime + "\t\t" +
-                process.turnaroundTime + "\t\t" + process.waitingTime);
+                process.turnaroundTime + "\t\t" + process.waitingTime + "\n");
         }
 
         double avgTurnaroundTime = (double) totalTurnaroundTime / processes.size();
