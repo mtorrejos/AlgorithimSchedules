@@ -22,12 +22,9 @@ public class MenuScreen {
 				SJF sjf = new SJF();
 				sjf.run();
 				break;
-				default:
-					System.out.print("Error: Invalid input");
-					break;
+			default:
+				System.out.print("Error: Invalid input");
+				break;
 			}
-		
-		
-
 	}
 }
