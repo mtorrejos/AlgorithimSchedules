@@ -4,7 +4,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class SCAN {
-    run() {
+    public void run() {
+    	Scanner scanner = new Scanner(System.in);
         System.out.print("Input current position: ");
         int headPosition = scanner.nextInt();
         
@@ -26,7 +27,8 @@ public class SCAN {
                     // Check if the request is within the track size
                     if (requests[i] < 0 || requests[i] >= trackSize) {
                         System.out.println("Invalid request. Request should be within the track size.");
-                        return;
+                        i--;
+                        continue;
                     }
                 }
                 
@@ -42,7 +44,7 @@ public class SCAN {
                 continue; }
         }
     }
-}
+
 
 
 public static void scanDiskScheduling(int[] requests, int headPosition, int trackSize) {
@@ -78,4 +80,5 @@ public static void scanDiskScheduling(int[] requests, int headPosition, int trac
     }
 
     System.out.println("Total Head Movements: " + totalHeadMovements);
+	}
 }
