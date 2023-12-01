@@ -15,6 +15,8 @@ public class MenuScreen {
 
 		switch (choice) {
 			case 1:
+				SCAN scan = new SCAN();
+				scan.run();
 				break;
 			case 2:
 				break;
