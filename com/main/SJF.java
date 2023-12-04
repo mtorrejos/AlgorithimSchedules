@@ -24,7 +24,7 @@ public class SJF {
         int currentTime = 0;
 
         while (true) {
-            if (tot == n) { 
+            if (tot == n) { //break once all processes have been calculated
                 break;
             }
 
@@ -38,19 +38,19 @@ public class SJF {
                 }
             }
 
-            if (currentProcess == null) {
+            if (currentProcess == null) { //if currentprocess doesn't exist, add 1 tick to currentTime
                 currentTime++;
-            } else {
+            } else { //calculate for each specified section
                 currentProcess.completionTime = currentTime + currentProcess.burstTime;
                 currentProcess.turnAroundTime = currentProcess.completionTime - currentProcess.arrivalTime;
                 currentProcess.waitingTime = currentProcess.turnAroundTime - currentProcess.burstTime;
                 currentProcess.completed = true;
                 currentTime += currentProcess.burstTime;
-                tot++;
+                tot++; //add tick to total
             }
         }
 
-        System.out.println("\npID \tArrival \tBurst \tComplete \tTAT \tWaiting");
+        System.out.println("\npID \tArrival \tBurst \tComplete \tTAT \tWaiting"); //display
         for (SJFProcess process : processes) {
             avgwt += process.waitingTime;
             avgta += process.turnAroundTime;
@@ -63,7 +63,7 @@ public class SJF {
     }
 }
 
-class SJFProcess {
+class SJFProcess { //sjf process parameters
 
     int processId;
     int arrivalTime;
